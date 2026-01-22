@@ -6,3 +6,11 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+-- Fix statusline disappearing after dashboard
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    if vim.bo.filetype ~= "dashboard" then
+      vim.opt.laststatus = 3 -- Always show statusline when not on dashboard
+    end
+  end,
+})
