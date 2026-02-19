@@ -14,3 +14,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
   end,
 })
+vim.api.nvim_create_autocmd("BufRead", {
+  pattern = "*",
+  callback = function()
+    vim.cmd("silent! %s/\r//g")
+  end,
+})
